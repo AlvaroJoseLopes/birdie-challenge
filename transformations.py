@@ -44,7 +44,6 @@ def rename_transformation(data: dict, old_key: str, new_key: str) -> dict:
     current_value = data.get(old_key, None)
     if current_value is not None:
         data = set_transformation(data, new_key, current_value)
-
-    data = delete_transformation(data, old_key)
+        data = delete_transformation(data, old_key)
 
     return data
