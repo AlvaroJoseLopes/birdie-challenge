@@ -28,9 +28,19 @@ if __name__ == "__main__":
     argparser.add_argument(
         "-t", "--transformations", nargs="+", help="List of transformations", default=[]
     )
-    argparser.add_argument("-i", "--input_file", help=".json input file", required=True)
     argparser.add_argument(
-        "-o", "--output_file", help=".json output file", required=True
+        "-i",
+        "--input_file",
+        help=".json input file",
+        required=True,
+        default="input.json",
+    )
+    argparser.add_argument(
+        "-o",
+        "--output_file",
+        help=".json output file",
+        required=True,
+        default="output.json",
     )
     args = argparser.parse_args()
     main(args)
