@@ -18,14 +18,14 @@ For the JSON deserialization the following scenarios were considered:
 - All the content fits memory
 - The content doesn't fit in memory 
 
-To accomplish both scenarios the deserialization was made in chunks (with a max size in bytes specified by the user, for default 8MB). 
+To accomplish both scenarios the deserialization was made in chunks (with a max size in bytes specified by the user, for default 8MB - cost-throughput optimal for OLAP [1] ). 
 
 The generator function responsible for that was `json_reader.read_json()` which reads a JSON file in chunks and yields each chunk as a dictionary.
 
 ### Step 2.
 Since the transformations follow the pattern: `{transformation_type}:{parameter1}:{parameter2}:...` we can easily parse each argument and extract the type of the transformation and its parameters.
 
-The method responsible for that is `transformation_parser.parse()` and returns a tuple where the first element is a string indicating the transformation type (e.g., "delete", "set", "rename") and the second element is a dictionary with the corresponding parameters.
+The method responsible for that is `transformation_parser.parse()` and returns a tuple where the first element is a string indicating the transformation type (e.g., "delete", "set", "rename") and the second element is a dictionary with the corresponding keyword parameters.
 For example:
 - `delete:color` returns `("delete", {"key": "color"})`
 
@@ -63,3 +63,6 @@ Example:
 ```bash
 python3 transform.py -t delete:color set:number:three rename:pet:animal
 ```
+
+## References
+[1] Dominik Durner, Viktor Leis, and Thomas Neumann. 2023. Exploiting Cloud Object Storage for High-Performance Analytics. Proc. VLDB Endow. 16, 11 (July 2023), 2769–2782. https://doi.org/10.14778/3611479.3611486
