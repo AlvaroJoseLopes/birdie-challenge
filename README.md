@@ -39,7 +39,7 @@ The file `transformations.py` contains one method for each transformation and ta
 ### Step 4.
 The final step is to serialize the transformed content into another file. 
 
-To accomplish that the class `json_writer.JsonWriter` that dumps the content .json content in chunks was implemented. The method `write()` takes a chunk and writes it into the file. This class when used as context manager also ensures that the final file - with appended chunks - is a valid JSON file.
+To accomplish that the class `json_writer.JsonWriter` that dumps the content into .json (in chunks) was implemented. The method `write()` takes a chunk and writes it into the file. This class when used as context manager also ensures that the final file - with appended chunks - is a valid JSON file.
 
 ## How to use it
 
